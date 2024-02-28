@@ -60,6 +60,6 @@ const Search = () => {
       </Button>
     </form>
   );
-};
+};``
 
 export default Search;
