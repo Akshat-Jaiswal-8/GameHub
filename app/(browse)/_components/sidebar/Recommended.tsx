@@ -9,6 +9,7 @@ import {
 
 interface RecommendedProps {
   data: User[];
+
 }
 
 export const Recommended = ({ data }: RecommendedProps) => {
