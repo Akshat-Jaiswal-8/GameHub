@@ -1,9 +1,7 @@
 import React from "react";
-import { getSelf } from "@/lib/auth-service";
 import { getUserByUserName } from "@/lib/user-service";
 import { notFound } from "next/navigation";
 import { isFollowingUser } from "@/lib/follow-service";
-import { Button } from "@/components/ui/button";
 import { Actions } from "@/app/(browse)/[username]/_components/actions";
 
 interface UserPageProps {

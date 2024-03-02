@@ -1,6 +1,5 @@
-import { db } from "@/lib/db";
-import { getSelf } from "@/lib/auth-service";
-import { useState } from "react";
+import { getSelf } from "./auth-service";
+import { db } from "./db";
 
 export const getRecommended = async () => {
   // await new Promise((resolve) => setTimeout(resolve, 5000));
@@ -17,9 +16,22 @@ export const getRecommended = async () => {
   if (userId) {
     users = await db.user.findMany({
       where: {
-        NOT: {
-          id: userId,
-        },
+        AND: [
+          {
+            NOT: {
+              id: userId,
+            },
+          },
+          {
+            NOT: {
+              follower: {
+                some: {
+                  followerId: userId,
+                },
+              },
+            },
+          },
+        ],
       },
       orderBy: {
         createdAt: "desc",

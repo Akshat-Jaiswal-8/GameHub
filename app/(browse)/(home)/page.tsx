@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { UserButton } from "@clerk/nextjs";
+import UserPage from "@/app/(browse)/[username]/page";
+import { router } from "next/client";
 
 export default function Home() {
   return (

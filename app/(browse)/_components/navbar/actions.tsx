@@ -22,7 +22,7 @@ const Actions = async () => {
             variant={"ghost"}
             asChild
           >
-            <Link href={`u/${user.username}`}>
+            <Link href={`/${user.username}`}>
               <Clapperboard className={"w-5 h-5 lg:mr-2"} />
               <span className={"hidden lg:block"}>Dashboard</span>
             </Link>
