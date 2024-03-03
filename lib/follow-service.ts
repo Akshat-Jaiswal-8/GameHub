@@ -1,4 +1,3 @@
-import React from "react";
 import { getSelf } from "./auth-service";
 import { db } from "./db";
 
@@ -6,16 +5,22 @@ export const getFollowedUser = async () => {
   try {
     const self = await getSelf();
 
-    const followedUser = db.follow.findMany({
+    return db.follow.findMany({
       where: {
         followerId: self.id,
+        following: {
+          blocking: {
+            none: {
+              blockedId: self.id,
+            },
+          },
+        },
       },
 
       include: {
         following: true,
       },
     });
-    return followedUser;
   } catch (error) {
     return [];
   }
