@@ -1,17 +1,19 @@
 "use client";
-
-import { useMediaQuery } from "usehooks-ts";
 import { cn } from "@/lib/utils";
-import { useSidebar } from "@/store/use-sidebar";
+import { useCreatorSidebar } from "@/store/use-creater-sidebar";
 import React, { useEffect } from "react";
+import { useMediaQuery } from "usehooks-ts";
 
 interface ContainerProps {
   children: React.ReactNode;
 }
 
 export const Container = ({ children }: ContainerProps) => {
-  const matches = useMediaQuery("(max-width: 1024px)");
-  const { collapsed, onCollapse, onExpand } = useSidebar((state) => state);
+  const { collapsed, onCollapse, onExpand } = useCreatorSidebar(
+    (state) => state
+  );
+
+  const matches = useMediaQuery(`(max-width : 1024px)`);
 
   useEffect(() => {
     if (matches) {
