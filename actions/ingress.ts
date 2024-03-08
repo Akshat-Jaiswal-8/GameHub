@@ -4,6 +4,7 @@ import {
   CreateIngressOptions,
   IngressAudioEncodingPreset,
   IngressClient,
+  IngressInfo,
   IngressInput,
   IngressVideoEncodingPreset,
   RoomServiceClient,
@@ -19,10 +20,12 @@ const roomService = new RoomServiceClient(
   process.env.LIVEKIT_API_SECRET,
 );
 
-const ingressClient = new IngressClient(process.env.LIVEKIT_API_URL!);
+const ingressClient: IngressClient = new IngressClient(
+  process.env.LIVEKIT_API_URL!,
+);
 
 export const resetIngress = async (hostIdentity: string) => {
-  const ingresses = await ingressClient.listIngress({
+  const ingresses: IngressInfo[] = await ingressClient.listIngress({
     roomName: hostIdentity,
   });
   const rooms = await roomService.listRooms([hostIdentity]);
