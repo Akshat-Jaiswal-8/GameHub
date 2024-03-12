@@ -6,7 +6,7 @@ import { getUserById } from "@/lib/user-service";
 import { AccessToken } from "livekit-server-sdk";
 import { v4 } from "uuid";
 
-const createViewerToken = async (hostIdentity: string) => {
+export const createViewerToken = async (hostIdentity: string) => {
   let self;
   try {
     self = await getSelf();
@@ -31,9 +31,9 @@ const createViewerToken = async (hostIdentity: string) => {
     process.env.LIVEKIT_API_KEY!,
     process.env.LIVEKIT_API_SECRET!,
     {
-      identity: isHost ? `host${self.id}` : self.id,
+      identity: isHost ? `host-${self.id}` : self.id,
       name: self.username,
-    }
+    },
   );
 
   token.addGrant({
@@ -45,5 +45,3 @@ const createViewerToken = async (hostIdentity: string) => {
 
   return Promise.resolve(token.toJwt());
 };
-
-export default createViewerToken;

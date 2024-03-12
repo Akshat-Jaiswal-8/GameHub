@@ -1,4 +1,4 @@
-import StreamPlayer from "@/components/StreamPlayer";
+import Index from "@/components/stream-player";
 import { getUserByUserName } from "@/lib/user-service";
 import { currentUser } from "@clerk/nextjs";
 import React from "react";
@@ -18,7 +18,7 @@ const CreaterPage = async ({ params }: CreaterPageProps) => {
   }
   return (
     <div className="h-full">
-      <StreamPlayer user={user} stream={user.stream} isFollowing />
+      <Index user={user} stream={user.stream} isFollowing />
     </div>
   );
 };

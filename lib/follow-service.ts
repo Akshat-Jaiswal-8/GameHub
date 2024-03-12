@@ -133,6 +133,5 @@ export const unfollowUser = async (id: string) => {
     },
   });
 
-  console.log(unfollow);
   return unfollow;
 };

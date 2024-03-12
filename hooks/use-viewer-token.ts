@@ -1,9 +1,10 @@
-import createViewerToken from "@/actions/token";
-import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
-const useViewerToken = (hostIdentity: string) => {
+import { createViewerToken } from "@/actions/token";
+
+export const useViewerToken = (hostIdentity: string) => {
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
   const [identity, setIdentity] = useState("");
@@ -17,19 +18,18 @@ const useViewerToken = (hostIdentity: string) => {
         const decodedToken = jwtDecode(viewerToken) as JwtPayload & {
           name?: string;
         };
-
         const name = decodedToken?.name;
         const identity = decodedToken.jti;
-
-        if (name) {
-          setName(name);
-        }
 
         if (identity) {
           setIdentity(identity);
         }
-      } catch (error) {
-        toast.error("something went wrong");
+
+        if (name) {
+          setName(name);
+        }
+      } catch {
+        toast.error("Something went wrong");
       }
     };
 
@@ -38,9 +38,7 @@ const useViewerToken = (hostIdentity: string) => {
 
   return {
     token,
-    identity,
     name,
+    identity,
   };
 };
-
-export default useViewerToken;
