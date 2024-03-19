@@ -6,7 +6,7 @@ import {
 } from "./ui/tooltip";
 
 interface HintProps {
-  label: string;
+  label: string | undefined;
   children: React.ReactNode;
   asChild?: boolean;
   side?: "top" | "left" | "bottom" | "right";
