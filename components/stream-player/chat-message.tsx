@@ -4,7 +4,6 @@ import React from "react";
 import { format } from "date-fns";
 
 interface ChatMessageProps {
-  key: string;
   data: ReceivedChatMessage;
 }
 
@@ -21,6 +20,7 @@ export const ChatMessage = ({ data }: ChatMessageProps) => {
             <span className="truncate" style={{ color: colour }}>
               {data.from?.name}
             </span>
+            :
           </p>
           <p className="text-sm break-all">{data.message}</p>
         </div>

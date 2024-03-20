@@ -9,9 +9,13 @@ import {
 } from "@livekit/components-react";
 
 import { ConnectionState, RemoteParticipant } from "livekit-client";
-import { ChatHeader } from "@/components/stream-player/chat-header";
+import {
+  ChatHeader,
+  ChatHeaderSkeleton,
+} from "@/components/stream-player/chat-header";
 import { ChatForm } from "@/components/stream-player/chat-form";
-import { ChatList } from "./chat-list";
+import { ChatList, ChatListSkeleton } from "./chat-list";
+import ChatCommunity from "./chat-community";
 
 interface ChatProps {
   viewername: string;
@@ -86,7 +90,26 @@ export const Chat = ({
           />
         </>
       )}
-      {variant === chatVariant.COMMUNITY && <p>community Mode</p>}
+      {variant === chatVariant.COMMUNITY && (
+        <ChatCommunity
+          viewerName={viewername}
+          hostName={hostname}
+          isHidden={hidden}
+        />
+      )}
+    </div>
+  );
+};
+
+export const ChatSkeleton = () => {
+  return (
+    <div
+      className={
+        "flex flex-col border-l border-b pt-0 h-[calc(100vh - 80px)] border-2"
+      }
+    >
+      <ChatHeaderSkeleton />
+      <ChatListSkeleton />
     </div>
   );
 };

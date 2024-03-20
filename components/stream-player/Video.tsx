@@ -10,12 +10,13 @@ import { ConnectionState, Track } from "livekit-client";
 import { OfflineVideo } from "@/components/stream-player/offline-video";
 import { Loading } from "@/components/stream-player/loading-video";
 import { LiveVideo } from "@/components/stream-player/live-video";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface VideoProps {
   hostname: string;
   hostIdentity: string;
 }
-function Video({ hostname, hostIdentity }: VideoProps) {
+export const Video = ({ hostname, hostIdentity }: VideoProps) => {
   const connectionState = useConnectionState();
 
   const participant = useRemoteParticipant(hostIdentity);
@@ -41,6 +42,12 @@ function Video({ hostname, hostIdentity }: VideoProps) {
   return (
     <div className={"aspect-video border-b group relative"}>{content}</div>
   );
-}
+};
 
-export default Video;
+export const VideoSkeleton = () => {
+  return (
+    <div className={"aspect-video border-x border-background"}>
+      <Skeleton className={"h-full w-full rounded-none"} />
+    </div>
+  );
+};

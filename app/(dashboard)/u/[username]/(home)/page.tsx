@@ -1,4 +1,4 @@
-import Index from "@/components/stream-player";
+import { Index } from "@/components/stream-player";
 import { getUserByUserName } from "@/lib/user-service";
 import { currentUser } from "@clerk/nextjs";
 import React from "react";
