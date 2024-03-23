@@ -1,4 +1,3 @@
-import { Sidebar } from "@/app/(browse)/_components/sidebar";
 import { create } from "zustand";
 
 interface SidebarStore {

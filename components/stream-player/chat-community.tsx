@@ -45,7 +45,7 @@ const ChatCommunity = ({
         }
         return acc;
       },
-      [] as (RemoteParticipant | LocalParticipant)[],
+      [] as (RemoteParticipant | LocalParticipant)[]
     );
     return deduped.filter((participant) => {
       return participant?.name
@@ -53,6 +53,7 @@ const ChatCommunity = ({
         .includes(debouncedValue.toLowerCase());
     });
   }, [participants, debouncedValue]);
+
   return (
     <div>
       <Input
@@ -75,7 +76,7 @@ const ChatCommunity = ({
               participantName={participant.name}
               participantIdentity={participant.identity}
             />
-          ),
+          )
         )}
       </ScrollArea>
     </div>
