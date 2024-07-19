@@ -11,6 +11,7 @@ import {
 import { UserIcon } from "lucide-react";
 import { Actions, ActionsSkeleton } from "@/components/stream-player/actions";
 import { Skeleton } from "@/components/ui/skeleton";
+import { LocalParticipant, RemoteParticipant } from "livekit-client";
 
 interface HeaderProps {
   hostName: string;
@@ -28,13 +29,15 @@ export const Header = ({
   imageUrl,
   isFollowing,
 }: HeaderProps) => {
-  const participants = useParticipants();
-  const participant = useRemoteParticipant(hostIdentity);
+  const participants: (RemoteParticipant | LocalParticipant)[] =
+    useParticipants();
+  const participant: RemoteParticipant | undefined =
+    useRemoteParticipant(hostIdentity);
 
-  const isLive = !!participant;
-  const participantCount = participants.length - 1;
-  const hostAsViewer = `host-${hostIdentity}`;
-  const isHost = viewerIdentity === hostAsViewer;
+  const isLive: boolean = !!participant;
+  const participantCount: number = participants.length - 1;
+  const hostAsViewer: string = `host-${hostIdentity}`;
+  const isHost: boolean = viewerIdentity === hostAsViewer;
 
   return (
     <div

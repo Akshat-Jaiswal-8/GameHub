@@ -1,6 +1,13 @@
 "use client";
-
+import React, { useTransition } from "react";
+import { Heart } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { router } from "next/client";
+import { onFollow, onUnfollow } from "@/actions/follow";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useAuth } from "@clerk/nextjs";
 
 interface ActionsProps {
   hostIdentity: string;
@@ -8,24 +15,13 @@ interface ActionsProps {
   isFollowing: boolean;
 }
 
-import React, { useTransition } from "react";
-import { useAuth } from "@clerk/nextjs/app-beta/client";
-import { Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { router } from "next/client";
-import { onFollow, onUnfollow } from "@/actions/follow";
-import { toast } from "sonner";
-import { Skeleton } from "@/components/ui/skeleton";
-
 export const Actions = ({
   hostIdentity,
   isHost,
   isFollowing,
 }: ActionsProps) => {
-  const { userId } = useAuth();
-
   const [isPending, startTransition] = useTransition();
-
+  const { userId } = useAuth();
   const handleFollow = (): void => {
     startTransition((): void => {
       onFollow(hostIdentity)
@@ -78,7 +74,7 @@ export const Actions = ({
 export const ActionsSkeleton = () => {
   return (
     <div>
-      <Skeleton className={"h-10 w-full lg:w-24"} />{" "}
+      <Skeleton className={"h-10 w-full lg:w-24"} />
     </div>
   );
 };

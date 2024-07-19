@@ -12,14 +12,15 @@ export const useViewerToken = (hostIdentity: string) => {
   useEffect(() => {
     const createToken = async () => {
       try {
-        const viewerToken = await createViewerToken(hostIdentity);
+        const viewerToken: string = await createViewerToken(hostIdentity);
         setToken(viewerToken);
 
         const decodedToken = jwtDecode(viewerToken) as JwtPayload & {
           name?: string;
         };
+
         const name = decodedToken?.name;
-        const identity = decodedToken.jti;
+        const identity = decodedToken.sub;
 
         if (identity) {
           setIdentity(identity);

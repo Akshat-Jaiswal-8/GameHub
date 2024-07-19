@@ -11,8 +11,8 @@ export const createViewerToken = async (hostIdentity: string) => {
   try {
     self = await getSelf();
   } catch (error) {
-    const id = v4();
-    const username = `guest#${Math.floor(Math.random() * 1000)}`;
+    const id: string = v4();
+    const username: string = `guest#${Math.floor(Math.random() * 1000)}`; // guest#1234
     self = { id, username };
   }
 
@@ -21,13 +21,13 @@ export const createViewerToken = async (hostIdentity: string) => {
     throw new Error("User not found");
   }
 
-  const isBlocked = await isBlockedByUser(host.id);
+  const isBlocked: Boolean = await isBlockedByUser(host.id);
   if (isBlocked) {
     throw new Error("User is blocked");
   }
 
-  const isHost = self.id === host.id;
-  const token = new AccessToken(
+  const isHost: boolean = self.id === host.id;
+  const token: AccessToken = new AccessToken(
     process.env.LIVEKIT_API_KEY!,
     process.env.LIVEKIT_API_SECRET!,
     {

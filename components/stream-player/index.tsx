@@ -1,11 +1,12 @@
 "use client";
+import React from "react";
+import InfoCard from "@/components/stream-player/InfoCard";
+import { cn } from "@/lib/utils";
 import { useViewerToken } from "@/hooks/use-viewer-token";
 import { Stream, User } from "@prisma/client";
-import React, { use } from "react";
 import { LiveKitRoom } from "@livekit/components-react";
 import { Video, VideoSkeleton } from "@/components/stream-player/Video";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
-import { cn } from "@/lib/utils";
 import { Chat, ChatSkeleton } from "./chat";
 import { ChatToggle } from "@/components/stream-player/chat-toggle";
 import { Header, HeaderSkeleton } from "@/components/stream-player/header";
@@ -18,9 +19,7 @@ interface StreamPlayerProps {
 
 export const Index = ({ user, stream, isFollowing }: StreamPlayerProps) => {
   const { token, name, identity } = useViewerToken(user.id);
-
   const { collapsed } = useChatSidebar((state) => state);
-
   if (!name || !token || !identity) <StreamPlayerSkeleton />;
   return (
     <>
@@ -46,6 +45,12 @@ export const Index = ({ user, stream, isFollowing }: StreamPlayerProps) => {
             isFollowing={isFollowing}
             imageUrl={user.imageUrl}
             viewerIdentity={identity}
+          />
+          <InfoCard
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            name={stream.name}
+            thumbnailUrl={stream.thumbnailUrl}
           />
         </div>
         <div className={cn("col-span-1", collapsed && "hidden")}>
