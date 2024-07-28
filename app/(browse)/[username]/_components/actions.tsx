@@ -36,7 +36,7 @@ export const Actions = ({
         .then((data) =>
           toast.success(`You have unfollowed ${data.following.username}`),
         )
-        .catch((e) => toast.error(`${e}`));
+        .catch(() => toast.error("Something went wrong;"));
     });
   };
 
@@ -52,9 +52,9 @@ export const Actions = ({
     startTransition(() => {
       onBlock(userId)
         .then((data) => {
-          if (typeof data !== "boolean") {
-            toast.success(`Blocked the user ${data.blocked.username}`);
-          }
+          !!data
+            ? toast.success(`You have blocked ${data?.blocked.username}`)
+            : toast.success("Blocked guest");
         })
         .catch((e) => toast.error(`${e}`));
     });
@@ -64,9 +64,7 @@ export const Actions = ({
     startTransition(() => {
       onUnBlock(userId)
         .then((data) => {
-          if (typeof data !== "boolean") {
-            toast.success(`Unblocked the user ${data.blocked.username}`);
-          }
+          toast.success(`Unblocked the user ${data.blocked.username}`);
         })
         .catch((e) => toast.error(`${e}`));
     });
