@@ -19,65 +19,58 @@ export const ChatCommunity = ({
   isHidden,
 }: ChatCommunityProps) => {
   const participants = useParticipants();
-
   const [value, setValue] = useState<string>("");
-
   const debouncedValue = useDebounce<string>(value, 500);
 
   const onChange = (newValue: string) => {
     setValue(newValue);
   };
 
-  if (isHidden) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <p>Community is disabled</p>
-      </div>
-    );
-  }
-
-  const filteredParticipant = useMemo(() => {
+  const filteredParticipants = useMemo(() => {
     const deduped = participants.reduce(
       (acc, participant) => {
-        const hostViewer = `host-${participant.identity}`;
-        if (!acc.some((p: { identity: string }) => p.identity === hostViewer)) {
+        const hostAsViewr = `host-${participant.identity}`;
+        if (!acc.some((p) => p.identity === hostAsViewr)) {
           acc.push(participant);
         }
         return acc;
       },
       [] as (RemoteParticipant | LocalParticipant)[],
     );
-    return deduped.filter((participant) => {
-      return participant?.name
-        ?.toLowerCase()
-        .includes(debouncedValue.toLowerCase());
-    });
-  }, [participants, debouncedValue]);
+
+    return deduped.filter((participant) =>
+      participant.name?.toLowerCase().includes(debouncedValue.toLowerCase()),
+    );
+  }, [debouncedValue, participants]);
+
+  if (isHidden) {
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <p className="text-sm text-muted-foreground">Community is disabled</p>
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className="p-4">
       <Input
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          onChange(e.target.value);
-        }}
-        placeholder="Search Community"
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search community"
         className="border-white/10"
       />
       <ScrollArea className="gap-y-2 mt-4">
-        <p className="text-center text-sm text-muted-foreground hidden last:block p-2">
-          No Results
+        <p className="text-center text-sm text-muted-foreground hidden last:block">
+          No results
         </p>
-        {filteredParticipant.map(
-          (participant: RemoteParticipant | LocalParticipant) => (
-            <CommunityItem
-              key={participant.identity}
-              hostName={hostName}
-              viewerName={viewerName}
-              participantName={participant.name}
-              participantIdentity={participant.identity}
-            />
-          ),
-        )}
+        {filteredParticipants.map((participant) => (
+          <CommunityItem
+            key={participant.identity}
+            hostName={hostName}
+            viewerName={viewerName}
+            participantName={participant.name}
+            participantIdentity={participant.identity}
+          />
+        ))}
       </ScrollArea>
     </div>
   );
