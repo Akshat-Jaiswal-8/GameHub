@@ -1,103 +1,81 @@
 # GameHub
 
-A feature-rich online streaming platoform built using modern web technologies. This project replicates the core functionalities of Twitch, including authentication, live streaming, chat, managing the community.
+![GameHub Logo](https://github.com/user-attachments/assets/2dad800b-4788-4109-9f4c-1ab68dda5c39)
 
-## Table of Contents
+GameHub is a cutting-edge online streaming platform that replicates the core functionalities of Twitch. Built with modern web technologies, it offers a seamless experience for both streamers and viewers.
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Contributing](#contributing)
-- [Contact](#contact)
+## [*Live Demo*](https://gamehub-akshat.vercel.app/)
 
 ## Features
 
-- User authentication (Sign up, Login, Logout)
-- Live streaming with real-time chat functionality
-- Browse and search streams of other users and join their stream.
-- User profile navigation and their streams.
-- Follow and unfollow streamers.
-- Streamer dashboards for representing their stream in a convenient manner. 
+- **User Authentication**: Secure sign-up, login, and logout processes.
+- **Live Streaming**: High-quality live video streaming capabilities.
+- **Real-time Chat**: Interactive chat functionality during live streams.
+- **Stream Discovery**: Browse and search for active streams.
+- **User Profiles**: Customizable profiles for streamers and viewers.
+- **Follow System**: Follow your favorite streamers and get notified.
+- **Streamer Dashboard**: Comprehensive tools for streamers to manage their content.
 
+## Technology Stack
 
-## Tech Stack
+- **Frontend**: Next.js, Tailwind CSS, ShadcnUI
+- **Backend**: Next.js (server actions)
+- **Authentication**: Clerk
+- **State Management**: Zustand
+- **Streaming Infrastructure**: Livekit
+- **File Handling**: UploadThings
+- **Database**: PostgreSQL with Prisma ORM
+- **Deployment**: Vercel
 
-- **Authentication:** Clerk
-- **Frontend:** Next.js, Tailwind CSS, ShadcnUI.
-- **Backend:** Next.js (server actions).
-- **Global state management:** Zustand.
-- **Streaming:** Livekit.
-- **File Upload:** UploadThings.
-- **ORM:** Prisma.
-- **Database:** Postgresql.
-- **Deployment:** Vercel.
-
-## Installation
+## Getting Started
 
 ### Prerequisites
 
-- Node.js (version - v20.13.1 or latest)
-- LiveKit
-- Postgresql
+- Node.js (v20.13.1 or later)
+- LiveKit account
+- PostgreSQL database
 
+### Installation
 
-### Environment Variables
-
-Create a `.env` file in the root directory and add the following environment variables:
-
-```plaintext
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= <get it from clerk after signing up>
-CLERK_SECRET_KEY= <get it from clerk after signing up>
-NEXT_PUBLIC_CLERK_SIGN_IN_URL= <redirection to route where user can sign in (eg. /sign-in)>
-NEXT_PUBLIC_CLERK_SIGN_UP_URL= <redirection to route after user logs out (eg. /sign-out)>
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=  <redirection to root route (eg. /)>
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=  <redirection to root route after (eg. /)>
-WEBHOOK_SECRET= <get it from clerk webhook>
-
-
-DATABASE_URL= <your postgresql db url>
-
-
-LIVEKIT_API_URL= <get it from livekit after signing up>
-LIVEKIT_API_KEY= <get it from livekit after signing up>
-LIVEKIT_API_SECRET= <get it from livekit after signing up>
-NEXT_PUBLIC_LIVEKIT_WS_URL= <get it from livekit after signing up>
-
-
-UPLOADTHING_SECRET=sk_live_b4acea5c384fb6067e1a249a565335743bf780f0220cefb1d60cd8ae86d295ff
-UPLOADTHING_APP_ID=shbkxqoqek
+1. Clone the repository:
 
 ```
-
-### Run it locally
-
-```bash
-# Clone the repository
-
-https://github.com/Akshat-Jaiswal-8/GameHub.git
+git clone https://github.com/Akshat-Jaiswal-8/GameHub.git
 cd GameHub
-
-# Install Dependencies
-
-npm install
-
-# Accessing the Application
-
-npm run dev
-
-# Port for accessing the application
-
-http://localhost:3000
 ```
+2. Install dependencies:
+```
+npm install
+```
+3. Set up environment variables:
+```
+   Create a `.env` file in the root directory and add the necessary environment variables. (Refer to the `.env.example` file for required variables)   
+```
+
+4. Start the development server:
+
+```
+npm run dev
+```
+
+5. Open `http://localhost:3000` in your browser to view the application.
+
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
+We welcome contributions to GameHub! Here's how you can help:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a pull request
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/AmazingFeature`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+5. Push to the branch (`git push origin feature/AmazingFeature`).
+6. Open a Pull Request.
+
+
+## Support
+
+If you encounter any issues or have questions, please file an issue on the GitHub repository.
+
 
 ## Contact
 
@@ -105,3 +83,6 @@ Akshat Jaiswal - [akshatjaiswal.official@gmail.com](mailto:akshatjaiswal.officia
 
 Project Link: [https://github.com/Akshat-Jaiswal-8/GameHub](https://github.com/Akshat-Jaiswal-8/GameHub)
 
+---
+
+Thank you for your interest in GameHub! We hope you enjoy using our platform.
