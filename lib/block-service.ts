@@ -18,7 +18,7 @@ export const isBlockedByUser = async (id: string): Promise<Boolean> => {
 
     const existingBlock = await db.block.findUnique({
       where: {
-        blockerId_blockedId: {
+        blockedId_blockerId: {
           blockedId: self.id,
           blockerId: otherUser.id,
         },
@@ -47,7 +47,7 @@ export const blockUser = async (id: string) => {
 
     const existingBlock = await db.block.findUnique({
       where: {
-        blockerId_blockedId: {
+        blockedId_blockerId: {
           blockedId: otherUser.id,
           blockerId: self.id,
         },
@@ -86,7 +86,7 @@ export const unblockUser = async (id: string) => {
 
   const existingBlock = await db.block.findUnique({
     where: {
-      blockerId_blockedId: {
+      blockedId_blockerId: {
         blockedId: otherUser.id,
         blockerId: self.id,
       },

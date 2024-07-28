@@ -26,7 +26,7 @@ export const Recommended = ({ data }: RecommendedProps) => {
       )}
       <ul className={"space-y-2 px-2"}>
         {data.map(
-          (user: User): React.ReactNode => (
+          (user): React.ReactNode => (
             <UserItem
               key={user.id}
               username={user.username}
