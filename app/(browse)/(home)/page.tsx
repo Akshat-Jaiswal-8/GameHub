@@ -1,7 +1,15 @@
-export default function Home() {
+import {
+  Results,
+  ResultsSkeleton,
+} from "@/app/(browse)/(home)/_components/results";
+import React, { Suspense } from "react";
+
+export default function Home(): React.JSX.Element {
   return (
-    <div className={"flex flex-col gap-y-4"}>
-      <p className={"text-xl"}>hello world!</p>
+    <div className={"h-full p-8 max-w-screen-2xl mx-auto"}>
+      <Suspense fallback={<ResultsSkeleton />}>
+        <Results />
+      </Suspense>
     </div>
   );
 }
