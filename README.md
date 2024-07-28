@@ -1,6 +1,6 @@
-# Twitch Clone
+# GameHub
 
-A feature-rich clone of Twitch built using modern web technologies. This project replicates the core functionalities of Twitch, including live streaming, chat, and user authentication.
+A feature-rich online streaming platoform built using modern web technologies. This project replicates the core functionalities of Twitch, including authentication, live streaming, chat, managing the community.
 
 ## Table of Contents
 
