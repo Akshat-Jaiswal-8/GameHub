@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Twitch Clone
 
-## Getting Started
+A feature-rich clone of Twitch built using modern web technologies. This project replicates the core functionalities of Twitch, including live streaming, chat, and user authentication.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [Contact](#contact)
+
+## Features
+
+- User authentication (Sign up, Login, Logout)
+- Live streaming with real-time chat functionality
+- Browse and search streams of other users and join their stream.
+- User profile navigation and their streams.
+- Follow and unfollow streamers.
+- Streamer dashboards for representing their stream in a convenient manner. 
+
+
+## Tech Stack
+
+- **Authentication:** Clerk
+- **Frontend:** Next.js, Tailwind CSS, ShadcnUI.
+- **Backend:** Next.js (server actions).
+- **Global state management:** Zustand.
+- **Streaming:** Livekit.
+- **File Upload:** UploadThings.
+- **ORM:** Prisma.
+- **Database:** Postgresql.
+- **Deployment:** Vercel.
+
+## Installation
+
+### Prerequisites
+
+- Node.js (version - v20.13.1 or latest)
+- LiveKit
+- Postgresql
+
+
+### Environment Variables
+
+Create a `.env` file in the root directory and add the following environment variables:
+
+```plaintext
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= <get it from clerk after signing up>
+CLERK_SECRET_KEY= <get it from clerk after signing up>
+NEXT_PUBLIC_CLERK_SIGN_IN_URL= <redirection to route where user can sign in (eg. /sign-in)>
+NEXT_PUBLIC_CLERK_SIGN_UP_URL= <redirection to route after user logs out (eg. /sign-out)>
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=  <redirection to root route (eg. /)>
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=  <redirection to root route after (eg. /)>
+WEBHOOK_SECRET= <get it from clerk webhook>
+
+
+DATABASE_URL= <your postgresql db url>
+
+
+LIVEKIT_API_URL= <get it from livekit after signing up>
+LIVEKIT_API_KEY= <get it from livekit after signing up>
+LIVEKIT_API_SECRET= <get it from livekit after signing up>
+NEXT_PUBLIC_LIVEKIT_WS_URL= <get it from livekit after signing up>
+
+
+UPLOADTHING_SECRET=sk_live_b4acea5c384fb6067e1a249a565335743bf780f0220cefb1d60cd8ae86d295ff
+UPLOADTHING_APP_ID=shbkxqoqek
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run it locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Clone the repository
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+https://github.com/Akshat-Jaiswal-8/GameHub.git
+cd GameHub
 
-## Learn More
+# Install Dependencies
 
-To learn more about Next.js, take a look at the following resources:
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Accessing the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+npm run dev
 
-## Deploy on Vercel
+# Port for accessing the application
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+http://localhost:3000
+```
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
+
+## Contact
+
+Akshat Jaiswal - [akshatjaiswal.official@gmail.com](mailto:akshatjaiswal.official@gmail.com)
+
+Project Link: [https://github.com/Akshat-Jaiswal-8/GameHub](https://github.com/Akshat-Jaiswal-8/GameHub)
+

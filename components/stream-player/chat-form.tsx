@@ -51,34 +51,28 @@ export const ChatForm = ({
   if (isHidden) return null;
   return (
     <form
-      className={"flex flex-col items-center gap-y-4"}
       onSubmit={handleSubmit}
+      className="flex flex-col items-center gap-y-4 p-3"
     >
-      <div className={"w-full"}>
+      <div className="w-full">
         <ChatInfo
           isChatDelayed={isChatDelayed}
           isChatFollowersOnly={isChatFollowersOnly}
         />
         <Input
-          onChange={(e) => {
-            e.target.value;
-          }}
+          onChange={(e) => onChange(e.target.value)}
           value={value}
           disabled={isDisabled}
-          placeholder={"send a message"}
+          placeholder="Send a message"
           className={cn(
             "border-white/10",
-            isChatFollowersOnly && "rounded-t-none border-t-0",
+            (isChatFollowersOnly || isChatDelayed) &&
+              "rounded-t-none border-t-0",
           )}
         />
       </div>
-      <div className={"ml-auto"}>
-        <Button
-          type={"submit"}
-          variant={"default"}
-          size={"sm"}
-          disabled={isDisabled}
-        >
+      <div className="ml-auto">
+        <Button type="submit" variant="primary" size="sm" disabled={isDisabled}>
           Chat
         </Button>
       </div>

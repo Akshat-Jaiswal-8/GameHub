@@ -13,7 +13,7 @@ export const getSelf = async () => {
   });
 
   if (!user) {
-    throw new Error("Not found.");
+    throw new Error("User not found.");
   }
 
   return user;
@@ -30,7 +30,7 @@ export const getSelfByUsername = async (username: string) => {
     where: { username },
   });
 
-  if (!user) { 
+  if (!user) {
     throw new Error("User Not found.");
   }
 

@@ -7,15 +7,17 @@ import {
   useConnectionState,
   useRemoteParticipant,
 } from "@livekit/components-react";
-
 import { ConnectionState, RemoteParticipant } from "livekit-client";
 import {
   ChatHeader,
   ChatHeaderSkeleton,
 } from "@/components/stream-player/chat-header";
-import { ChatForm } from "@/components/stream-player/chat-form";
+import {
+  ChatForm,
+  ChatFormSkeleton,
+} from "@/components/stream-player/chat-form";
 import { ChatList, ChatListSkeleton } from "./chat-list";
-import ChatCommunity from "./chat-community";
+import { ChatCommunity } from "./chat-community";
 
 interface ChatProps {
   viewername: string;
@@ -54,8 +56,14 @@ export const Chat = ({
   const { chatMessages: messages, send } = useChat();
 
   useEffect((): void => {
-    if (matches) onExpand();
+    if (matches) {
+      onExpand();
+    }
   }, [matches, onExpand]);
+
+  const reversedMessages = useMemo(() => {
+    return messages.sort((a, b) => b.timestamp - a.timestamp);
+  }, [messages]);
 
   const onSubmit = (): void => {
     if (!send) return;
@@ -66,9 +74,7 @@ export const Chat = ({
   const onChange = (value: string) => {
     setValue(value);
   };
-  const reversedMessages = useMemo(() => {
-    return messages.sort((a, b) => b.timestamp - a.timestamp);
-  }, [messages]);
+
   return (
     <div
       className={
@@ -110,6 +116,7 @@ export const ChatSkeleton = () => {
     >
       <ChatHeaderSkeleton />
       <ChatListSkeleton />
+      <ChatFormSkeleton />
     </div>
   );
 };

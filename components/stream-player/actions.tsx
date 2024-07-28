@@ -2,12 +2,12 @@
 import React, { useTransition } from "react";
 import { Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { router } from "next/client";
 import { onFollow, onUnfollow } from "@/actions/follow";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 interface ActionsProps {
   hostIdentity: string;
@@ -22,6 +22,7 @@ export const Actions = ({
 }: ActionsProps) => {
   const [isPending, startTransition] = useTransition();
   const { userId } = useAuth();
+  const router = useRouter();
   const handleFollow = (): void => {
     startTransition((): void => {
       onFollow(hostIdentity)
@@ -41,13 +42,13 @@ export const Actions = ({
           toast.success(`Successfully Unfollowed ${data.following.username}`);
         })
         .catch((e) => {
-          `${e}`;
+          toast.error(`${e}`);
         });
     });
   };
 
   const toggleFollow = () => {
-    if (userId) return router.push("/sign-in");
+    if (!userId) return router.push("/sign-in");
     if (isHost) return;
     if (isFollowing) {
       handleUnfollow();

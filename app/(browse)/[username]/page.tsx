@@ -1,37 +1,36 @@
 import React from "react";
-import { getUserByUserName } from "@/lib/user-service";
 import { notFound } from "next/navigation";
+
+import { getUserByUserName } from "@/lib/user-service";
 import { isFollowingUser } from "@/lib/follow-service";
-import { Actions } from "@/app/(browse)/[username]/_components/actions";
 import { isBlockedByUser } from "@/lib/block-service";
+import { StreamPlayer } from "@/components/stream-player";
 
 interface UserPageProps {
-  params: {
-    username: string;
+  params: { username: string };
+}
+
+export async function generateMetadata({
+  params: { username },
+}: UserPageProps) {
+  return {
+    title: username,
   };
 }
-const UserPage = async ({ params }: UserPageProps) => {
-  const user = await getUserByUserName(params.username);
 
-  if (!user) {
-    notFound();
-  }
+export default async function UserPage({
+  params: { username },
+}: UserPageProps) {
+  const user = await getUserByUserName(username);
+
+  if (!user || !user.stream) notFound();
 
   const isFollowing = await isFollowingUser(user.id);
-  const isBlockedByThisUser = await isBlockedByUser(user.id);
-  if (isBlockedByThisUser) return notFound();
-  return (
-    <div className={"flex flex-col gap-y-4"}>
-      <p>User : {params.username}</p>
-      <p>{`${isFollowing}`}</p>
-      <p>{`${isBlockedByThisUser}`}</p>
-      <Actions
-        isBlockedByThisUser={isBlockedByThisUser}
-        isFollowing={isFollowing}
-        userId={user.id}
-      />
-    </div>
-  );
-};
+  const isBlocked = await isBlockedByUser(user.id);
 
-export default UserPage;
+  if (isBlocked) notFound();
+
+  return (
+    <StreamPlayer user={user} isFollowing={isFollowing} stream={user.stream} />
+  );
+}

@@ -21,13 +21,13 @@ export const Logo = () => {
           <Image
             priority={false}
             src={"/spooky.svg"}
-            alt={"twitch logo"}
+            alt={"gamehub logo"}
             width={32}
             height={32}
           />
         </div>
         <div className={cn("hidden lg:block", font.className)}>
-          <p className={"text-xl font-semibold"}>Twitch</p>
+          <p className={"text-xl font-semibold"}>GameHub</p>
           <p className={"text-xs text-muted-foreground"}>let's play</p>
         </div>
       </div>

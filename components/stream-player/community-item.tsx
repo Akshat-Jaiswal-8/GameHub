@@ -26,6 +26,8 @@ export const CommunityItem = ({
   const isSelf = participantName === viewerName;
   const isHost = viewerName === hostName;
 
+  console.log(color);
+
   const handleBlock = () => {
     if (!participantName || !isHost || isSelf) {
       return;

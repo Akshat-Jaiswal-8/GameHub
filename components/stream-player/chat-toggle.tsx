@@ -24,6 +24,7 @@ export const ChatToggle = () => {
         className={
           "h-auto p-2 hover:bg-white/10 hover:text-primary bg-transparent"
         }
+        asChild
       >
         <Icon className={"h-4 w-4"} />
       </Button>

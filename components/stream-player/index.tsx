@@ -1,23 +1,28 @@
 "use client";
 import React from "react";
-import InfoCard from "@/components/stream-player/InfoCard";
 import { cn } from "@/lib/utils";
-import { useViewerToken } from "@/hooks/use-viewer-token";
-import { Stream, User } from "@prisma/client";
-import { LiveKitRoom } from "@livekit/components-react";
+import { InfoCard } from "@/components/stream-player/InfoCard";
 import { Video, VideoSkeleton } from "@/components/stream-player/Video";
-import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { Chat, ChatSkeleton } from "./chat";
 import { ChatToggle } from "@/components/stream-player/chat-toggle";
 import { Header, HeaderSkeleton } from "@/components/stream-player/header";
+import { AboutCard } from "@/components/stream-player/AboutCard";
+import { useViewerToken } from "@/hooks/use-viewer-token";
+import { useChatSidebar } from "@/store/use-chat-sidebar";
+import { Stream, User } from "@prisma/client";
+import { LiveKitRoom } from "@livekit/components-react";
 
 interface StreamPlayerProps {
-  user: User & { stream: Stream | null };
+  user: User & { stream: Stream | null; _count: { follower: number } };
   stream: Stream;
   isFollowing: boolean;
 }
 
-export const Index = ({ user, stream, isFollowing }: StreamPlayerProps) => {
+export const StreamPlayer = ({
+  user,
+  stream,
+  isFollowing,
+}: StreamPlayerProps) => {
   const { token, name, identity } = useViewerToken(user.id);
   const { collapsed } = useChatSidebar((state) => state);
   if (!name || !token || !identity) <StreamPlayerSkeleton />;
@@ -51,6 +56,13 @@ export const Index = ({ user, stream, isFollowing }: StreamPlayerProps) => {
             viewerIdentity={identity}
             name={stream.name}
             thumbnailUrl={stream.thumbnailUrl}
+          />
+          <AboutCard
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            hostName={user.username}
+            bio={user.bio}
+            followedByCount={user._count.follower}
           />
         </div>
         <div className={cn("col-span-1", collapsed && "hidden")}>

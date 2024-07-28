@@ -13,8 +13,8 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 export const metadata: Metadata = {
-  title: "Twitch",
-  description: "Welcome to twitch , the next gen streaming platform",
+  title: "GameHub",
+  description: "Welcome to GameHub, the next generation streaming platform",
 };
 
 export default function RootLayout({

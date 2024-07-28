@@ -11,7 +11,7 @@ interface InfoCardProps {
   thumbnailUrl: string | null;
 }
 
-const InfoCard = ({
+export const InfoCard = ({
   name,
   hostIdentity,
   viewerIdentity,
@@ -67,5 +67,3 @@ const InfoCard = ({
     </div>
   );
 };
-
-export default InfoCard;

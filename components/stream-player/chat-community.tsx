@@ -13,7 +13,7 @@ interface ChatCommunityProps {
   isHidden: boolean;
 }
 
-const ChatCommunity = ({
+export const ChatCommunity = ({
   viewerName,
   hostName,
   isHidden,
@@ -45,7 +45,7 @@ const ChatCommunity = ({
         }
         return acc;
       },
-      [] as (RemoteParticipant | LocalParticipant)[]
+      [] as (RemoteParticipant | LocalParticipant)[],
     );
     return deduped.filter((participant) => {
       return participant?.name
@@ -76,11 +76,9 @@ const ChatCommunity = ({
               participantName={participant.name}
               participantIdentity={participant.identity}
             />
-          )
+          ),
         )}
       </ScrollArea>
     </div>
   );
 };
-
-export default ChatCommunity;
