@@ -16,10 +16,9 @@ const Search = () => {
     e.preventDefault();
     if (!value) return;
     const url = qs.stringifyUrl(
-      { url: "/", query: { term: value } },
+      { url: "/search", query: { term: value } },
       { skipEmptyString: true },
     );
-    // www.localhost:3000?term="" this will be pushed to the route.
     router.push(url);
   };
 
@@ -60,6 +59,7 @@ const Search = () => {
       </Button>
     </form>
   );
-};``
+};
+``;
 
 export default Search;
