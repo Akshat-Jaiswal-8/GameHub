@@ -9,12 +9,32 @@ import { Header, HeaderSkeleton } from "@/components/stream-player/header";
 import { AboutCard } from "@/components/stream-player/AboutCard";
 import { useViewerToken } from "@/hooks/use-viewer-token";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
-import { Stream, User } from "@prisma/client";
 import { LiveKitRoom } from "@livekit/components-react";
 
+type CustomStream = {
+  id: string;
+  isChatEnabled: boolean;
+  isChatDelayed: boolean;
+  isChatFollowersOnly: boolean;
+  isLive: boolean;
+  thumbnailUrl: string | null;
+  name: string;
+};
+
+type CustomUser = {
+  id: string;
+  username: string;
+  bio: string | null;
+  stream: CustomStream | null;
+  imageUrl: string;
+  _count: {
+    follower: number;
+  };
+};
+
 interface StreamPlayerProps {
-  user: User & { stream: Stream | null; _count: { follower: number } };
-  stream: Stream;
+  user: CustomUser;
+  stream: CustomStream;
   isFollowing: boolean;
 }
 
@@ -25,7 +45,7 @@ export const StreamPlayer = ({
 }: StreamPlayerProps) => {
   const { token, name, identity } = useViewerToken(user.id);
   const { collapsed } = useChatSidebar((state) => state);
-  if (!name || !token || !identity) <StreamPlayerSkeleton />;
+  if (!name || !token || !identity) return <StreamPlayerSkeleton />;
   return (
     <>
       {collapsed && (

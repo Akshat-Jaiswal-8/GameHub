@@ -1,13 +1,13 @@
 "use client";
 import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
-import { useCreatorSidebar } from "@/store/use-creater-sidebar";
-import { ArrowLeftFromLine, ArrowRightFromLine, Ghost } from "lucide-react";
+import { useCreatorSidebar } from "@/store/use-creator-sidebar";
+import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react";
 import React from "react";
 
 export const Toggle = () => {
   const { collapsed, onCollapse, onExpand } = useCreatorSidebar(
-    (state) => state
+    (state) => state,
   );
 
   const label = collapsed ? "Expand" : "Collapse";

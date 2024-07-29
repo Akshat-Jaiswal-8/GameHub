@@ -5,12 +5,12 @@ import Navbar from "./_components/navbar";
 import Sidebar from "./_components/sidebar";
 import { Container } from "./_components/container";
 
-interface CreaterLayoutProps {
+interface CreatorLayoutProps {
   params: { username: string };
   children: React.ReactNode;
 }
 
-const CreaterLayout = async ({ params, children }: CreaterLayoutProps) => {
+const CreatorLayout = async ({ params, children }: CreatorLayoutProps) => {
   const self = await getSelfByUsername(params.username);
   if (!self) {
     redirect("/");
@@ -26,4 +26,4 @@ const CreaterLayout = async ({ params, children }: CreaterLayoutProps) => {
   );
 };
 
-export default CreaterLayout;
+export default CreatorLayout;
