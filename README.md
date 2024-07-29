@@ -1,10 +1,9 @@
-# GameHub
+# GameHub | [*Live Link🔗*](https://gamehub-akshat.vercel.app/)
 
 ![GameHub Logo](https://github.com/user-attachments/assets/2dad800b-4788-4109-9f4c-1ab68dda5c39)
 
 GameHub is a cutting-edge online streaming platform that replicates the core functionalities of Twitch. Built with modern web technologies, it offers a seamless experience for both streamers and viewers.
 
-## [*Live Demo*](https://gamehub-akshat.vercel.app/)
 
 ## Features
 
