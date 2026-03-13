@@ -1,4 +1,4 @@
-# GameHub | [*Live Link🔗*](https://gamehub-akshat.vercel.app/)
+# GameHub | [*Live Link🔗*](https://gamehub.akshatjaiswal.me/)
 
 ![GameHub Logo](https://github.com/user-attachments/assets/2dad800b-4788-4109-9f4c-1ab68dda5c39)
 
